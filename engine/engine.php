@@ -4,6 +4,7 @@
         private $posLetra;
         private $totalLetras; //letras que se han adivinado
         private $intentos;
+        private $tiempoRest;
 
         function __construct($dificultad) {
             /*espacio para codigo de busqueda de palabra*/
@@ -41,6 +42,52 @@
             } else {
                 return false;
             }
+        }
+
+        public function setTiempoRest($tiempoRest) {
+            $this->tiempoRest = $tiempoRest;
+        }
+
+        public function Calificar() {
+            $puntos = 0;
+
+            switch ($this->tiempoRest) {
+                case $this->tiempoRest > 20 && $this->tiempoRest <= 30:
+                    $puntos += 10;
+                    break;
+
+                case $this->tiempoRest > 10 && $this->tiempoRest <= 20:
+                    $puntos += 5;
+                    break;
+
+                case $this->tiempoRest > 0 && $this->tiempoRest <= 10:
+                    $puntos += 3;
+                    break;
+
+                default:
+                    $puntos += 1;
+                    break;
+            }
+
+            switch ($this->intentos) {
+                case 0:
+                    $puntos += 10;
+                    break;
+
+                case 1:
+                    $puntos += 5;
+                    break;
+
+                case 2:
+                    $puntos += 1;
+                    break;
+
+                default:
+                    $puntos = 0;
+                    break;
+            }
+
+            return $puntos;
         }
 
         public function tiempoFuera() { //SOLO MULTIPLAYER
