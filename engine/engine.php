@@ -37,7 +37,7 @@
         }
 
         public function estPalabra() {
-            if ($totalLetras == strlen($this->palabra)) {
+            if ($this->totalLetras == strlen($this->palabra)) {
                 return true;
             } else {
                 return false;
@@ -50,6 +50,24 @@
 
         public function Calificar() {
             $puntos = 0;
+
+            switch ($this->totalLetras) {
+                case $this->totalLetras == 1:
+                    $puntos += 1;
+                    break;
+
+                case $this->totalLetras == 2:
+                    $puntos += 5;
+                    break;
+
+                case $this->totalLetras >= 3:
+                    $puntos += 10;
+                    break;
+
+                default:
+                    $puntos += 0;
+                    break;
+            }
 
             switch ($this->tiempoRest) {
                 case $this->tiempoRest > 20 && $this->tiempoRest <= 30:

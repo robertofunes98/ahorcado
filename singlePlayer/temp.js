@@ -6,7 +6,7 @@ function temp() {
     function evaluar() {
         if (t == 0) {
             clearInterval(timer);
-            alert('finish');
+            return true;
         } else {
             t--;
             clock.innerHTML = t;
