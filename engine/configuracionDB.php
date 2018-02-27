@@ -1,5 +1,5 @@
 <?php
-    function escribirDatosDB($URL, $user, $pass, $db) {
+    function escribirDatos($URL, $user, $pass, $db) {
         //archivo que contiene direccion de BD
         $fileConex = fopen("datosDB/url.txt", "w+");
         fwrite($fileConex, $URL);
@@ -12,7 +12,7 @@
         $fileConex = fopen("datosDB/pass.txt", "w+");
         fwrite($fileConex, $pass);
         fclose($fileConex);
-        //archivo que contendra direccion de BD
+        //archivourl.txt que contendra direccion de BD
         $fileConex = fopen("datosDB/dbName.txt", "w+");
         fwrite($fileConex, $db);
         fclose($fileConex);
@@ -21,16 +21,30 @@
     if (isset($_POST["btnAceptar"])) {
         $URL = $_POST['txtUrlDB'];
         $user = $_POST['txtUsername'];
-        $pass = $_POST['passUser'];
+
+        if ($pass = $_POST['passUser'] == "") {
+            $pass = 0;
+        } else {
+            $pass = $_POST['passUser'];
+        }
+
         $db = $_POST['txtDbName'];
 
         if (is_dir("datosDB/")) {
-            escribirDatosDB($URL, $user, $pass, $db);
+            escribirDatos($URL, $user, $pass, $db);
         } else {
             mkdir("datosDB", 0777, true);
-            escribirDatosDB($URL, $user, $pass, $db);
+            escribirDatos($URL, $user, $pass, $db);
         }
     }
+
+    $contURL = file("datosDB/url.txt");
+    $contUser = file("datosDB/username.txt");
+    $contPass = file("datosDB/pass.txt");
+    $contDB = file("datosDB/dbName.txt");
+
+    echo "direccion DB = " . $contURL[0] . "<br>username = " . $contUser[0] . "<br>pass = " .
+    $contPass[0] . "<br>Nombre DB = " . $contDB[0];
 ?>
 
 <!DOCTYPE html>
