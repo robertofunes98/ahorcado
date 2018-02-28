@@ -1,5 +1,7 @@
 <?php
+    include_once("../engine/conexDB.php");
+
     function aggPalabra($palabra) {
-        /*conexion a la DB*/
+        
     }
 ?>
