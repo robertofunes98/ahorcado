@@ -39,6 +39,10 @@
                 echo "Error: " . $this->conexion->error;
             }
         }
+
+        public function cerrarConex() {
+            $this->conexion->close();
+        }
     }
 
 ?>
