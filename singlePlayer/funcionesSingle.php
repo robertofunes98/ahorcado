@@ -1,7 +1,7 @@
 <?php
     include_once("../engine/conexDB.php");
 
-    function aggPalabra($palabra) {
-        
+    function aggPalabra($palabra, $pista) {
+
     }
 ?>
