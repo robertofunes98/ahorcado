@@ -37,23 +37,3 @@ primary key pkJugadorXpalabra(idJugadorXPalabra),
 foreign key fkJugadorXPalabraXJugador(usuario) references Jugador(usuario),
 foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPalabra)
 );
-
-/*Pruebas*/
-
-insert into Palabra (texto,reporte,pista) values ("hola mundo",0,"la vieja confiable en progra");
-
-
-insert into Jugador values ("ref98",1,aes_encrypt("prueba","hola"),5000,true);
-
-SELECT * FROM Jugador where AES_DECRYPT(contra, 'hola') = "prueba" and usuario = "ref98";
-
-
-insert into Puntuacion values (5000,"ref98");
-
-insert into JugadorXPalabra values ("ref98",1);
-
-select * from palabra;
-select * from Jugador;
-select * from Puntuacion;
-select * from JugadorXPalabra;
-
