@@ -14,8 +14,10 @@ primary key pkJugador(usuario)
 );
 
 create table Puntuacion(
+idPuntuacion int auto_increment not null,
 puntaje int not null,
 usuario varchar(30) not null,
+primary key pkPuntuacion(idPuntuacion),
 foreign key fkPuntuacionXJugador(usuario) references Jugador(usuario)
 );
 
@@ -28,8 +30,10 @@ primary key pkPalabra(codigoPalabra)
 );
 
 create table JugadorXPalabra(
+idJugadorXPalabra int auto_increment not null,
 usuario varchar(30) not null,
-codigoPalabra varchar(3) not null,
+codigoPalabra int not null,
+primary key pkJugadorXpalabra(idJugadorXPalabra),
 foreign key fkJugadorXPalabraXJugador(usuario) references Jugador(usuario),
 foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPalabra)
 );
@@ -37,10 +41,6 @@ foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPa
 /*Pruebas*/
 
 insert into Palabra (texto,reporte,pista) values ("hola mundo",0,"la vieja confiable en progra");
-
- /*Si sabes encriptar y desencriptar con AES intenta xd mi server tiene problema con los datos blob. Aqui encripte con MD5*/
-
-/*insert into Jugador values ("ref98",1,MD5("prueba"),5000);*/
 
 
 insert into Jugador values ("ref98",1,aes_encrypt("prueba","hola"),5000,true);
@@ -56,3 +56,4 @@ select * from palabra;
 select * from Jugador;
 select * from Puntuacion;
 select * from JugadorXPalabra;
+
