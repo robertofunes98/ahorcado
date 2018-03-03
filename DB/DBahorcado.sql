@@ -37,6 +37,7 @@ primary key pkJugadorXpalabra(idJugadorXPalabra),
 foreign key fkJugadorXPalabraXJugador(usuario) references Jugador(usuario),
 foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPalabra)
 );
+<<<<<<< HEAD
 
 create table UsuariosBuscandoPartida(
 idBusqueda int auto_increment not null,
@@ -68,3 +69,5 @@ delete from UsuariosBuscandoPartida where Usuario="ref98";
 select count(usuario) from UsuariosBuscandoPartida;
 
 select usuario as 'usuarios' from UsuariosBuscandoPartida;
+=======
+>>>>>>> 266b95d252cc6e6694363507d4565707fe236c5b
