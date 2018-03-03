@@ -38,6 +38,11 @@ foreign key fkJugadorXPalabraXJugador(usuario) references Jugador(usuario),
 foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPalabra)
 );
 
+create table UsuariosBuscandoPartida(
+idBusqueda int auto_increment not null,
+Usuario varchar(30) not null
+);
+
 /*Pruebas*/
 
 insert into Palabra (texto,reporte,pista) values ("hola mundo",0,"la vieja confiable en progra");
@@ -48,12 +53,18 @@ insert into Jugador values ("ref98",1,aes_encrypt("prueba","hola"),5000,true);
 SELECT * FROM Jugador where AES_DECRYPT(contra, 'hola') = "prueba" and usuario = "ref98";
 
 
-insert into Puntuacion values (5000,"ref98");
+insert into Puntuacion(puntaje,usuario) values (5000,"ref98");
 
-insert into JugadorXPalabra values ("ref98",1);
+insert into JugadorXPalabra(usuario,codigoPalabra) values ("ref98",1);
 
 select * from palabra;
 select * from Jugador;
 select * from Puntuacion;
 select * from JugadorXPalabra;
+select * from UsuariosBuscandoPartida;
 
+delete from UsuariosBuscandoPartida where Usuario="ref98";
+
+select count(usuario) from UsuariosBuscandoPartida;
+
+select usuario as 'usuarios' from UsuariosBuscandoPartida;
