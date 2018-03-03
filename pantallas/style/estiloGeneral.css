@@ -1,0 +1,62 @@
+/*general*/
+body {
+    background-color: rgb(65, 66, 68);
+    color: white;
+}
+
+.derechos {
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    height: 6%;
+    background-color: rgb(32, 32, 32);
+    color: white;
+    padding: 0;
+    margin: 0;
+    left: 0;
+}
+
+.div1 {
+    position: static;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-style: normal;
+    font-family: Arial, helvetica, sans-serif;
+}
+/*botones*/
+.opciones1 {
+    background-color: rgb(78, 170, 101);
+}
+
+.opciones2 {
+    background-color: rgb(194, 106, 106);
+}
+
+.opciones1, .opciones2 {
+    border-style: none;
+    color: white;
+    padding: 16px 16px;
+    font-size: 18px;
+    margin: 10px 10px;
+    transition: background-color 0.75s, color 0.75s, padding 0.75s;
+    -webkit-transition: background-color 0.75s, color 0.75s, padding 0.75s;
+    -moz-transition: background-color 0.75s , color 0.75s, padding 0.75s;
+    -o-transition: background-color 0.75s, color 0.75s, padding 0.75s;
+}
+
+.opciones1:hover {
+    background-color: rgb(27, 140, 56);
+    color: black;
+    padding: 20px 20px;
+}
+
+.opciones2:hover {
+    background-color: rgb(173, 65, 65);
+    color: black;
+    padding: 20px 20px;
+}
