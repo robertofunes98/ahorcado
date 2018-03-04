@@ -39,6 +39,10 @@
                                 case 3:
                                     header('location: login.php');
                                     break;
+
+                                default:
+                                    header('location: index.php');
+                                break;
                             }
                         }
                     ?>
