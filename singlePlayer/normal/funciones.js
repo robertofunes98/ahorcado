@@ -45,20 +45,31 @@ function iniciar() {
         }
     }
 
-    xhttp.open("POST","normal/evaluarPalabra.php", true);
+    xhttp.open("POST","evaluarPalabra.php", true);
     xhttp.send();
+}
+
+function probarVidas() {
+    var vidas = document.getElementById("vidas").value;
+    var vidasDisp = vidas--;
+    document.getElementById("vidas").innerHTML = vidasDisp;
 }
 
 function enviarLetra() {
     var letra = document.getElementById("txtLetra").value;
 
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("respuesta").innerHTML = this.responseText;
+    if (letra == "") {
+        alert('Debe ingresar una letra!');
+        foco();
+    } else {
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("respuesta").innerHTML = this.responseText;
+            }
         }
-    }
 
-    xhttp.open("POST","normal/evaluarPalabra.php", true);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("letra=" + letra);
+        xhttp.open("POST","evaluarPalabra.php", true);
+        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhttp.send("letra=" + letra);
+    }
 }

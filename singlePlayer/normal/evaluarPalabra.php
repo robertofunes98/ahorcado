@@ -8,14 +8,14 @@
 
     if (isset($_POST['letra'])) {
         $letra = $_POST['letra'];
-        $palabra = $_SESSION['palabra'];
+        $palabra = $_SESSION['palabra']['texto'];
 
         $letraEvaluar = new motor($palabra);
 
         if ($letraEvaluar->verificarLetra($letra) == true) {
             $posLetra = $letraEvaluar->getPos();
 
-            for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
+            for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
                 if (!$posLetra[$i] == 0) {
                     $_SESSION['letras'][$i] = $posLetra[$i];
                 }
@@ -23,37 +23,48 @@
 
             $juegoFinalizado = true;
 
-            for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
+            for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
                 if ($_SESSION['letras'][$i] == "0") {
                     $juegoFinalizado = false;
                 }
             }
 
             if ($juegoFinalizado != false) {
-                echo "<h1>Palabra Correcta!</h1>";
+                echo "<h1><p><font color='#01b438'>Palabra Correcta!</font></p></h1><br>";
+                echo "<h3><p><font color='#01b438'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
-                $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
-
-                for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
-                    $_SESSION['letras'][$i] = 0;
-                }
+                exit();
             }
         } else {
-            echo "letra mala";
+            echo "<h1><p><font color='#e24949'>letra mala</font></p></h1>";
+
+            if ($_SESSION['vidas'] > 1) {
+                $_SESSION['vidas']--;
+            } else {
+                echo "<h1><p><font color='#e24949'>Ya no tienes vidas!</font></p></h1>";
+                echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
+
+                exit();
+            }
         }
     } else {
         session_destroy();
         session_start();
         $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
+        $_SESSION['vidas'] = 6;
 
-        for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
+        for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
             $_SESSION['letras'][$i] = 0;
         }
     }
 
-    $mostrar = "<table><tr>";
+    $mostrar = "<table><tr><td colspan=" . round((strlen($_SESSION['palabra']['texto'])/2), 0, PHP_ROUND_HALF_UP) . ">";
+    $mostrar .= "<center><p><font color='#8fa8f2'>Pista:&nbsp;&nbsp;" . $_SESSION['palabra']['pista'] . "</font></p></center></td>";
+    $mostrar .= "<td colspan=" . round((strlen($_SESSION['palabra']['texto'])/2), 0, PHP_ROUND_HALF_DOWN) . "><center><p><font color='#e9d841'>Vidas:&nbsp;";
+    $mostrar .= $_SESSION['vidas'] . "</font></p></center></td></tr><tr>";
 
-    for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
+    for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
         if ($_SESSION['letras'][$i] == "0") {
             $espacioLetras = "";
         } else {
@@ -65,7 +76,7 @@
 
     $mostrar .= "</tr><tr>";
 
-    for ($i=0; $i < strlen($_SESSION['palabra']); $i++) {
+    for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
         $mostrar .= "<td><p>___</p></td>";
     }
 

@@ -10,7 +10,7 @@
         $sql = "SELECT * FROM Palabra WHERE codigoPalabra = " . $idPalabra;
         $resultConsultaPalabra = $conexion2->consultaPersonalizada($sql);
 
-        return $resultConsultaPalabra['texto'];
+        return $resultConsultaPalabra;
     }
 
     class motor {

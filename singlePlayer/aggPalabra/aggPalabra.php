@@ -1,11 +1,11 @@
 <?php
-    include_once("../engine/conexDB.php");
+    include_once("../../engine/conexDB.php");
 
     function aggPalabra($palabra, $pista) {
         $datos = "'" . $palabra . "',NULL,'" . $pista . "'";
         $campos = "texto,reporte,pista";
         $tabla = "Palabra";
-        $dirDocuentos = "../engine/datosDB";
+        $dirDocuentos = "../../engine/datosDB";
 
         $conexion1 = new conexDB($dirDocuentos);
         $conexion1->ingresarDatos($tabla, $datos, $campos);
