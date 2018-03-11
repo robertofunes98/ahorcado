@@ -7,52 +7,83 @@
     $dirDocumentos = "../../engine/datosDB";
 
     if (isset($_POST['letra'])) {
-        $letra = $_POST['letra'];
+        $letra = trim(strtolower($_POST['letra']));
         $palabra = $_SESSION['palabra']['texto'];
 
-        $letraEvaluar = new motor($palabra);
+        if ($_SESSION['juegoFinalizado'] == true) {
+            if ($_SESSION['perdiste'] == true) {
+                echo "<h1><p><font color='#e24949'>Ya Perdiste la Palabra era:</font></p></h1><br>";
+                echo "<h3><p><font color='#e24949'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
-        if ($letraEvaluar->verificarLetra($letra) == true) {
-            $posLetra = $letraEvaluar->getPos();
-
-            for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
-                if (!$posLetra[$i] == 0) {
-                    $_SESSION['letras'][$i] = $posLetra[$i];
-                }
-            }
-
-            $juegoFinalizado = true;
-
-            for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
-                if ($_SESSION['letras'][$i] == "0") {
-                    $juegoFinalizado = false;
-                }
-            }
-
-            if ($juegoFinalizado != false) {
-                echo "<h1><p><font color='#01b438'>Palabra Correcta!</font></p></h1><br>";
+                exit();
+            } else {
+                echo "<h1><p><font color='#01b438'>Ya Completaste esta Palabra!</font></p></h1><br>";
                 echo "<h3><p><font color='#01b438'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
                 echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
                 exit();
             }
-        } else {
-            echo "<h1><p><font color='#e24949'>letra mala</font></p></h1>";
+        }
 
-            if ($_SESSION['vidas'] > 1) {
-                $_SESSION['vidas']--;
+        if (filtroLetras($letra) == true) {
+            if (verificarLetraRepetida($letra, $_SESSION['letras']) == false) {
+                $letraEvaluar = new motor($palabra);
+
+                if ($letraEvaluar->verificarLetra($letra) == true) {
+                    $posLetra = $letraEvaluar->getPos();
+
+                    for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
+                        if (!$posLetra[$i] == 0) {
+                            $_SESSION['letras'][$i] = $posLetra[$i];
+                        }
+                    }
+
+                    $_SESSION['juegoFinalizado'] = true;
+
+                    for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
+                        if ($_SESSION['letras'][$i] == "0") {
+                            $_SESSION['juegoFinalizado'] = false;
+                        }
+                    }
+
+                    if ($_SESSION['juegoFinalizado'] == true) {
+                        $_SESSION['perdiste'] = false;
+
+                        echo "<h1><p><font color='#01b438'>Palabra Correcta!</font></p></h1><br>";
+                        echo "<h3><p><font color='#01b438'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                        echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
+
+                        exit();
+                    }
+                } else {
+                    echo "<h1><p><font color='#e24949'>letra mala</font></p></h1>";
+
+                    if ($_SESSION['vidas'] > 1) {
+                        $_SESSION['vidas']--;
+                    } else {
+                        echo "<h1><p><font color='#e24949'>Ya no Tienes Vidas la Palabra era:</font></p></h1>";
+                        echo "<h3><p><font color='#e24949'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                        echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
+
+                        $_SESSION['juegoFinalizado'] = true;
+                        $_SESSION['perdiste'] = true;
+
+                        exit();
+                    }
+                }
             } else {
-                echo "<h1><p><font color='#e24949'>Ya no tienes vidas!</font></p></h1>";
-                echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
-
-                exit();
+                echo "<h1><p><font color='#e28e49'>Ya se Ingreso la Letra " . $letra . "!</font></p></h1><br>";
             }
+        } else {
+            echo "<h1><p><font color='#e28e49'>Ingresar Solo Letras!</font></p></h1><br>";
         }
     } else {
         session_destroy();
         session_start();
         $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
         $_SESSION['vidas'] = 6;
+        $_SESSION['juegoFinalizado'] = false;
 
         for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
             $_SESSION['letras'][$i] = 0;

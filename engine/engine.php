@@ -1,6 +1,40 @@
 <?php
     include_once("conexDB.php");
 
+    function verificarLetraRepetida($letra, $arrayLetras) {
+        $letraRepetida = false;
+
+        for ($i=0; $i < count($arrayLetras); $i++) {
+            if ($letra === $arrayLetras[$i]) {
+                $letraRepetida = true;
+            }
+        }
+
+        if ($letraRepetida == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function filtroLetras($letra){
+        $letras = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p',
+                        'q','r','s','t','u','v','w','x','y','z');
+        $letrasValidas = 0;
+
+        for ($i=0; $i < count($letras); $i++) {
+            if ($letra == $letras[$i]) {
+                $letrasValidas++;
+            }
+        }
+
+        if ($letrasValidas > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function buscarPalabra($dirDocumentos) {
         $tabla = "Palabra";
         $conexion2 = new conexDB($dirDocumentos);
@@ -38,6 +72,10 @@
             } else {
                 return false;
             }
+        }
+
+        public function mensaje(){
+            echo "<script>alert('hola mundo');</script>";
         }
 
         public function getPos() {
