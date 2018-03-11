@@ -60,7 +60,7 @@
     }
 
     $mostrar = "<table><tr><td colspan=" . round((strlen($_SESSION['palabra']['texto'])/2), 0, PHP_ROUND_HALF_UP) . ">";
-    $mostrar .= "<center><p><font color='#8fa8f2'>Pista:&nbsp;&nbsp;" . $_SESSION['palabra']['pista'] . "</font></p></center></td>";
+    $mostrar .= "<center><p><font color='#8fa8f2'>Pista:&nbsp;" . $_SESSION['palabra']['pista'] . "</font></p></center></td>";
     $mostrar .= "<td colspan=" . round((strlen($_SESSION['palabra']['texto'])/2), 0, PHP_ROUND_HALF_DOWN) . "><center><p><font color='#e9d841'>Vidas:&nbsp;";
     $mostrar .= $_SESSION['vidas'] . "</font></p></center></td></tr><tr>";
 

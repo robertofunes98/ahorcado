@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Login</title>
+        <link rel="stylesheet" href="menus/style/estiloGeneral.css">
     </head>
     <body>
         <center><h1><p>Ahorcado Virtual</p></h1></center>
@@ -24,7 +25,7 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2"><center><button>Login</button></center></td>
+                    <td colspan="2"><center><button class="boton1">Login</button></center></td>
                 </tr>
             </table>
         </center>

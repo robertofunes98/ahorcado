@@ -87,7 +87,7 @@ p {
     position: absolute;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
     background-color: rgb(148, 148, 148);
     text-align: center;
     border: none;
