@@ -5,12 +5,20 @@
         $datos = "'" . $palabra . "',NULL,'" . $pista . "'";
         $campos = "texto,reporte,pista";
         $tabla = "Palabra";
-        $dirDocuentos = "../../engine/datosDB";
+        $dirDocumentos = "../../engine/datosDB";
 
-        $conexion1 = new conexDB($dirDocuentos);
+        $conexion1 = new conexDB($dirDocumentos);
         $conexion1->ingresarDatos($tabla, $datos, $campos);
         $conexion1->cerrarConex();
+    }
 
-        echo "<script type='text/javascript'>alert('Palabra Ingresada Correctamente');</script>";
+    if (isset($_POST['palabra'])) {
+        $palabra = strtolower($_POST['palabra']);
+        $pista = strtolower($_POST['pista']);
+
+        aggPalabra($palabra, $pista);
+
+        echo "<h1><p><font color='#01b438'>Palabra Ingresada Correctamente</font></p></h1>";
+        echo "<h3><p><font color='#01b438'>Palabra:&nbsp;" . $palabra . "&nbsp;Pista:&nbsp;" . $pista . "</font></p></h3>";
     }
 ?>

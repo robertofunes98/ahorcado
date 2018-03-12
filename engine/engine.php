@@ -38,11 +38,11 @@
     function buscarPalabra($dirDocumentos) {
         $tabla = "Palabra";
         $conexion2 = new conexDB($dirDocumentos);
-        $resultados = $conexion2->consultaGeneral($tabla);
-        $cantResultados = count($resultados);
-        $idPalabra = mt_rand(1, $cantResultados);
+        $resultados = $conexion2->cantResultados($tabla);
+        $idPalabra = mt_rand(1, $resultados);
         $sql = "SELECT * FROM Palabra WHERE codigoPalabra = " . $idPalabra;
         $resultConsultaPalabra = $conexion2->consultaPersonalizada($sql);
+        $conexion2->cerrarConex();
 
         return $resultConsultaPalabra;
     }

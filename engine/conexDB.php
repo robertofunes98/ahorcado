@@ -70,6 +70,18 @@
             }
         }
 
+        public function cantResultados($tabla) {
+            $sql = "SELECT * FROM " . $tabla;
+            $result = $this->conexion->query($sql);
+
+            if ($result->num_rows > 0) {
+                return $result->num_rows;
+            } else {
+                echo "<script type='text/javascript'>alert('No hay datos');</script>";
+                exit();
+            }
+        }
+
         public function cerrarConex() {
             $this->conexion->close();
         }

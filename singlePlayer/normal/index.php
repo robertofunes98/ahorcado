@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Ahorcado Virtual</title>
+        <title>Normal</title>
         <link rel="stylesheet" href="../../menus/style/estiloGeneral.css">
         <script type="text/javascript" src="funciones.js"></script>
     </head>
