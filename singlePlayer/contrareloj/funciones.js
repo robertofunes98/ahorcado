@@ -21,32 +21,40 @@ function objetoAjax() {
 var xhttp = objetoAjax();
 
 function foco() {
-    var txtPalabra = document.getElementById('txtPalabra').focus();
+    var txtLetra = document.getElementById('txtLetra').focus();
 }
 
 function limpiar() {
-    var limpiar1 = document.getElementById('txtPalabra');
-    var limpiar2 = document.getElementById('txtPista');
-    limpiar1.value = "";
-    limpiar2.value = "";
+    var limpiar = document.getElementById('txtLetra');
+    limpiar.value = "";
 }
 
 function enviarEnter(event) {
     var codigo = event.which || event.keyCode;
 
     if(codigo === 13){
-      enviarPalabra();
+      enviarLetra();
       limpiar();
-      foco();
     }
 }
 
-function enviarPalabra() {
-    var palabra = document.getElementById("txtPalabra").value;
-    var pista = document.getElementById("txtPista").value;
+function iniciar() {
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("respuesta").innerHTML = this.responseText;
+        }
+    }
 
-    if (palabra == "" || pista == "") {
-        alert('Debe completar todos los campos!');
+    xhttp.open("POST","evaluarPalabra.php", true);
+    xhttp.send();
+}
+
+function enviarLetra() {
+    var letra = document.getElementById("txtLetra").value;
+
+    if (letra == "") {
+        alert('Debe ingresar una letra!');
+        foco();
     } else {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -54,8 +62,8 @@ function enviarPalabra() {
             }
         }
 
-        xhttp.open("POST","aggPalabra.php", true);
+        xhttp.open("POST","evaluarPalabra.php", true);
         xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xhttp.send("palabra=" + palabra + "&pista=" + pista);
+        xhttp.send("letra=" + letra);
     }
 }

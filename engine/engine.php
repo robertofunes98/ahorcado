@@ -1,6 +1,10 @@
 <?php
     include_once("conexDB.php");
 
+    function calificar($modoJuego, $tiempo = 0, $vidas) {
+        # code...
+    }
+
     function verificarLetraRepetida($letra, $arrayLetras) {
         $letraRepetida = false;
 

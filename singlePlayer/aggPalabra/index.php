@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../../menus/style/estiloGeneral.css">
         <script type="text/javascript" src="funciones.js"></script>
     </head>
-    <body onkeydown="enviarEnter(event)">
+    <body onload="foco()" onkeydown="enviarEnter(event)">
         <?php include_once("../../menus/juego/header.php"); ?>
 
         <div class="div1">
@@ -28,7 +28,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2"><center><button class="boton1" name="btnAggLetra" onclick="enviarPalabra();limpiar();">Agregar</button></center></td>
+                        <td colspan="2"><center><button class="boton1" name="btnAggLetra" onclick="enviarPalabra();limpiar();foco();">Agregar</button></center></td>
                     </tr>
                 </table>
             <center>

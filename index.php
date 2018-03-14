@@ -39,6 +39,18 @@
                                 case 3:
                                     header('location: login.php');
                                     break;
+
+                                case 4:
+                                    header('location: singlePlayer/normal/');
+                                    break;
+
+                                case 5:
+                                    header('location: singlePlayer/contrareloj/');
+                                    break;
+
+                                case 6:
+                                    header('location: singlePlayer/aggPalabra/');
+                                    break;
                             }
                         }
                     ?>

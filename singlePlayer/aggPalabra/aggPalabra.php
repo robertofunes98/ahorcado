@@ -13,8 +13,8 @@
     }
 
     if (isset($_POST['palabra'])) {
-        $palabra = strtolower($_POST['palabra']);
-        $pista = strtolower($_POST['pista']);
+        $palabra = trim(strtolower($_POST['palabra']));
+        $pista = trim(strtolower($_POST['pista']));
 
         aggPalabra($palabra, $pista);
 
