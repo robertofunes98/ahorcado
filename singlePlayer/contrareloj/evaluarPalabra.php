@@ -2,7 +2,11 @@
     include_once('../../engine/conexDB.php');
     include_once('../../engine/engine.php');
 
-    session_start();
+    @session_start();
+
+    if (comprobarSession() == false) {
+        header('location: ../../login.php');
+    }
 
     $dirDocumentos = "../../engine/datosDB";
 
@@ -88,8 +92,6 @@
             echo "<h1><p><font color='#e28e49'>Ingresar Solo Letras!</font></p></h1><br>";
         }
     } else {
-        session_destroy();
-        session_start();
         $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
         $_SESSION['vidas'] = 6;
         $_SESSION['juegoFinalizado'] = false;

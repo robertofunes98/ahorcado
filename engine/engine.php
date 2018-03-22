@@ -1,8 +1,84 @@
 <?php
     include_once("conexDB.php");
 
-    function calificar($modoJuego, $tiempo = 0, $vidas) {
-        # code...
+    function comprobarSession() {
+        @session_start();
+
+        if (!isset($_SESSION['usuario'])) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function highScore($dirDocumentos, $usuario) {
+        $conexion = new conexDB($dirDocumentos);
+        $sql = "SELECT * FROM Jugador WHERE usuario = '" . $usuario . "'";
+        $puntaje = $conexion->consultaPersonalizada($sql);
+
+        return $puntaje['puntajeMaximo'];
+    }
+
+    function calificar($modoJuego, $vidas, $dirDocumentos, $username, $tiempo = 0) {
+        $puntos = 0;
+
+        switch ($vidas) {
+            case 6:
+                $puntos += 60;
+                break;
+
+            case 5:
+                $puntos += 50;
+                break;
+
+            case 4:
+                $puntos += 40;
+                break;
+
+            case 3:
+                $puntos += 30;
+                break;
+
+            case 2:
+                $puntos += 20;
+                break;
+
+            case 1:
+                $puntos += 10;
+                break;
+
+            default:
+                $puntos += 1;
+                break;
+        }
+
+        if ($modoJuego == 2) {
+            switch ($tiempo) {
+                case $tiempo > 20:
+                    $puntos += 60;
+                    break;
+
+                case $tiempo > 10 || $tiempo <= 20:
+                    $puntos += 30;
+                    break;
+
+                case $tiempo <= 10 || $tiempo > 0:
+                    $puntos += 10;
+                    break;
+
+                default:
+                    $puntos += 1;
+                    break;
+            }
+        }
+
+        $agregarPuntos = new conexDB($dirDocumentos);
+        $tabla = "Puntuacion";
+        $campos = "puntaje,usuario";
+        $datos = "'" . $puntos . "','" . $username . "'";
+        $agregarPuntos->ingresarDatos($tabla, $datos, $campos);
+
+        return $puntos;
     }
 
     function verificarLetraRepetida($letra, $arrayLetras) {

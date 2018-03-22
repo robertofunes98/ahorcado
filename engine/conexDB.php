@@ -53,7 +53,7 @@
                 $datos = $result->fetch_assoc();
                 return $datos;
             } else {
-                echo "<script type='text/javascript'>alert('No hay datos');</script>";
+                return false;
                 exit();
             }
         }
@@ -65,7 +65,7 @@
                 $datos = $result->fetch_assoc();
                 return $datos;
             } else {
-                echo "<script type='text/javascript'>alert('No hay datos');</script>";
+                return false;
                 exit();
             }
         }

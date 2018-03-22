@@ -1,3 +1,11 @@
+<?php
+    include_once("../../engine/engine.php");
+
+    if (comprobarSession() == false) {
+        header('location: ../../login.php');
+    }
+?>
+
 <form method="post">
     <header class="menuJuego"><button name="salir" class="opciones2"><p>salir</p></button></header>
 </form>

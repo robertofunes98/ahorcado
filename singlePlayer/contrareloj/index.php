@@ -1,3 +1,11 @@
+<?php
+    include_once("../../engine/engine.php");
+
+    if (comprobarSession() == false) {
+        header('location: ../../login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +28,8 @@
 
                 <table>
                     <tr>
-                        <td colspan="3"><center id="respuesta"></center></td>
+                        <td><font color='#b48c01'><p><b>&quot;<?php @session_start(); echo $_SESSION['usuario']; ?>&quot;</b></p></font></td>
+                        <td colspan="2"><center id="respuesta"></center></td>
                     </tr>
 
                     <tr>

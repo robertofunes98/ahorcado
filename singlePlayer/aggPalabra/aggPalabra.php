@@ -1,5 +1,10 @@
 <?php
     include_once("../../engine/conexDB.php");
+    include_once("../../engine/engine.php");
+
+    if (comprobarSession() == false) {
+        header('location: ../../login.php');
+    }
 
     function aggPalabra($palabra, $pista) {
         $datos = "'" . $palabra . "',NULL,'" . $pista . "'";
