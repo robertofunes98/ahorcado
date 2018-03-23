@@ -6,11 +6,15 @@
         private $user;
         private $pass;
 
-        function __construct() {
-            $contURL = file("datosDB/url.txt");
-            $contUser = file("datosDB/username.txt");
-            $contPass = file("datosDB/pass.txt");
-            $contDB = file("datosDB/dbName.txt");
+        function __construct($dirDocDB) {
+            $dirUrl = $dirDocDB . "/url.txt";
+            $dirUser = $dirDocDB . "/username.txt";
+            $dirPass = $dirDocDB . "/pass.txt";
+            $dirDb = $dirDocDB . "/dbName.txt";
+            $contURL = file($dirUrl);
+            $contUser = file($dirUser);
+            $contPass = file($dirPass);
+            $contDB = file($dirDb);
 
             $this->url = $contURL[0];
             $this->user = $contUser[0];
@@ -37,29 +41,44 @@
                 echo "<script type='text/javascript'>alert('Datos Ingresados Correctamente');</script>";
             } else {
                 echo "Error: " . $this->conexion->error;
+                exit();
             }
         }
 
         public function consultaGeneral($tabla) {
             $sql = "SELECT * FROM " . $tabla;
-            $resul = $this->conexion->query($sql);
+            $result = $this->conexion->query($sql);
 
             if ($result->num_rows > 0) {
                 $datos = $result->fetch_assoc();
                 return $datos;
             } else {
-                echo "<script type='text/javascript'>alert('No hay datos');</script>";
+                return false;
+                exit();
             }
         }
 
         public function consultaPersonalizada($sql) {
-            $resul = $this->conexion->query($sql);
+            $result = $this->conexion->query($sql);
 
             if ($result->num_rows > 0) {
                 $datos = $result->fetch_assoc();
                 return $datos;
             } else {
+                return false;
+                exit();
+            }
+        }
+
+        public function cantResultados($tabla) {
+            $sql = "SELECT * FROM " . $tabla;
+            $result = $this->conexion->query($sql);
+
+            if ($result->num_rows > 0) {
+                return $result->num_rows;
+            } else {
                 echo "<script type='text/javascript'>alert('No hay datos');</script>";
+                exit();
             }
         }
 
