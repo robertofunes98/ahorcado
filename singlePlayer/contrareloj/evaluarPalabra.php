@@ -97,7 +97,11 @@
         $_SESSION['juegoFinalizado'] = false;
 
         for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
-            $_SESSION['letras'][$i] = 0;
+            if (substr($_SESSION['palabra']['texto'], $i, 1) === " ") {
+                $_SESSION['letras'][$i] = " ";
+            } else {
+                $_SESSION['letras'][$i] = 0;
+            }
         }
     }
 
@@ -109,6 +113,8 @@
     for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
         if ($_SESSION['letras'][$i] == "0") {
             $espacioLetras = "";
+        } elseif ($_SESSION['letras'][$i] === " ") {
+            $espacioLetras = "&nbsp;&nbsp;&nbsp;";
         } else {
             $espacioLetras = $_SESSION['letras'][$i];
         }
@@ -119,7 +125,11 @@
     $mostrar .= "</tr><tr>";
 
     for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
-        $mostrar .= "<td><p>___</p></td>";
+        if ($_SESSION['letras'][$i] === " ") {
+            $mostrar .= "<td><p>&nbsp;&nbsp;&nbsp;</p></td>";
+        } else {
+            $mostrar .= "<td><p>___</p></td>";
+        }
     }
 
     $mostrar .= "</tr></table>";

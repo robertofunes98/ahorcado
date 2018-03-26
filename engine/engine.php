@@ -133,6 +133,12 @@
 
         function __construct($palabra) {
             $this->palabra = $palabra;
+
+            for ($i=0; $i < strlen($palabra); $i++) {
+                if (substr($palabra, $i, 1) === " ") {
+                    $this->posLetra[$i] = " ";
+                }
+            }
         }
 
         public function verificarLetra($letra) {
