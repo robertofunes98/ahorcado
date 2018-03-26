@@ -19,7 +19,9 @@
             $this->url = $contURL[0];
             $this->user = $contUser[0];
 
-            if ($contPass[0] == 0) {
+			
+			//Cuando la contraseña es diferente de "0" no lo reconocia ya que no tomaba el "0" como string
+            if ($contPass[0] == "0") {
                 $this->pass = "";
             } else {
                 $this->pass = $contPass[0];
