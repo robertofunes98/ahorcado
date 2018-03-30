@@ -26,7 +26,8 @@
                 @session_start();
                 $_SESSION['usuario'] = trim($username);
                 $sql3 = "update Jugador set Enlinea = true where usuario = '" . $_SESSION['usuario'] . "'";
-                $consultas->consultaPersonalizada($sql3);
+                @$consultas->consultaPersonalizada($sql3);
+                @$consultas->cerrarConex();
                 header('location: index.php');
             }
         }
@@ -63,7 +64,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2"><center><button name="login" class="boton1">Login</button></center></td>
+                        <td colspan="2"><center><button type="button" onclick="window.location.href = 'registro/';" class="boton2">Registrarse</button>&nbsp;&nbsp;<button name="login" class="boton1">Login</button></center></td>
                     </tr>
                 </table>
             </form>

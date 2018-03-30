@@ -83,6 +83,7 @@
             echo "<h1><p><font color='#e28e49'>Ingresar Solo Letras!</font></p></h1><br>";
         }
     } else {
+        unset($_SESSION['letras']);
         $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
         $_SESSION['vidas'] = 6;
         $_SESSION['juegoFinalizado'] = false;
