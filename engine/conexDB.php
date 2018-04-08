@@ -19,8 +19,6 @@
             $this->url = $contURL[0];
             $this->user = $contUser[0];
 
-			
-			//Cuando la contraseña es diferente de "0" no lo reconocia ya que no tomaba el "0" como string
             if ($contPass[0] == "0") {
                 $this->pass = "";
             } else {
@@ -40,10 +38,9 @@
             $sql = "INSERT INTO " . $tabla . "(". $campos . ") VALUES (" . $datos . ")";
 
             if ($this->conexion->query($sql) === TRUE) {
-                echo "<script type='text/javascript'>alert('Datos Ingresados Correctamente');</script>";
+                return true;
             } else {
-                echo "Error: " . $this->conexion->error;
-                exit();
+                return false;
             }
         }
 
