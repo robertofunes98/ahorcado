@@ -61,6 +61,8 @@
                                 case 6:
                                     header('location: singlePlayer/aggPalabra/');
                                     break;
+								case 7:
+									header('location: multiplayer/');
                             }
                         }
                     ?>
