@@ -4,8 +4,6 @@
     if (comprobarSession() == false) {
         header('location: ../../login.php');
     }
-	
-	if(!isset($_REQUEST['']))
 ?>
 
 <button name="opcion" value="7" class="opciones1"><p>Jugar</p></button>

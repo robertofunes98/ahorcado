@@ -107,13 +107,6 @@ input[type="text"], input[type="password"] {
     -o-transition: background-color 0.5s;
 }
 
-.boton1-grande {
-	width: 25%;
-	height: 40px;
-	font-size: 20px;
-	text-align: center;
-}
-
 .boton1:hover {
     background-color: rgb(50, 94, 47);
 }
