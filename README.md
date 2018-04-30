@@ -1,5 +1,5 @@
 # ahorcado
-Juego Ahorcado para la Web
+Juego Ahorcado para la Web en php
 
 Desarrolladores:
 
