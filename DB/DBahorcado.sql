@@ -1,4 +1,4 @@
-draop database if exists PruebaAhorcado;
+drop database if exists PruebaAhorcado;
 
 create database if not exists PruebaAhorcado;
 
@@ -42,6 +42,7 @@ create table UsuariosBuscandoPartida(
 idBusqueda int auto_increment not null,
 usuario varchar(30) not null,
 usuarioEmparejado boolean not null,
+contrincante varchar(30) null,
 primary key pkUsuariosBuscandoPartida(idBusqueda)
 );
 
@@ -65,8 +66,13 @@ select * from Puntuacion;
 select * from JugadorXPalabra;
 select * from UsuariosBuscandoPartida;
 
-
 select usuario from UsuariosBuscandoPartida where Usuario="ref98";
+
+select * from UsuariosBuscandoPartida where usuario="ref98" and usuarioEmparejado=1;
+
+update usuariosBuscandoPartida set usuarioEmparejado=1 where usuario="Usuario6";
+
+
 
 delete from UsuariosBuscandoPartida where Usuario="ref98";
 
