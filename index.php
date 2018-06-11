@@ -12,6 +12,7 @@
     <head>
         <meta charset="utf-8">
         <title>Bienvenido <?php echo $_SESSION['usuario']; ?></title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
     <link rel="stylesheet" href="menus/style/estiloGeneral.css">
     <body>

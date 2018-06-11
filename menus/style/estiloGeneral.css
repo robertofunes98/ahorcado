@@ -65,6 +65,17 @@ p {
     padding: 20px 20px;
 }
 
+@media screen and (max-width: 800px) {
+    .opciones1, .opciones2 {
+        width: 80%;
+        height: auto;
+    }
+
+    .derechos, .divMenuJuego {
+        display: none;
+    }
+}
+
 .menuJuego {
     background-color: rgb(94, 94, 94);
     width: 100%;

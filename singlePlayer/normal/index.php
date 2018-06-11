@@ -13,6 +13,7 @@
         <title>Normal</title>
         <link rel="stylesheet" href="../../menus/style/estiloGeneral.css">
         <script type="text/javascript" src="funciones.js"></script>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
     <body onload="iniciar();foco();" onkeydown="enviarEnter(event)">
         <?php include_once("../../menus/juego/header.php"); ?>
