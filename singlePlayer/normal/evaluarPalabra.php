@@ -18,12 +18,14 @@
             if ($_SESSION['perdiste'] == true) {
                 echo "<h1><p><font color='#e24949'>Ya Perdiste la Palabra era:</font></p></h1><br>";
                 echo "<h3><p><font color='#e24949'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                echo "<h3><p><font color='#e24949'>&quot;<u>Puntaje: " . $_SESSION['puntaje'] . "</u>&quot;</font></p></h3>";
                 echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
                 exit();
             } else {
                 echo "<h1><p><font color='#01b438'>Ya Completaste esta Palabra!</font></p></h1><br>";
                 echo "<h3><p><font color='#01b438'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                echo "<h3><p><font color='#01b438'>&quot;<u>Puntaje: " . $_SESSION['puntaje'] . "</u>&quot;</font></p></h3>";
                 echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
                 exit();
@@ -53,9 +55,11 @@
 
                     if ($_SESSION['juegoFinalizado'] == true) {
                         $_SESSION['perdiste'] = false;
+                        $_SESSION['puntaje'] = calificar(1, $_SESSION['vidas'], $dirDocumentos, $_SESSION['usuario']);
 
                         echo "<h1><p><font color='#01b438'>Palabra Correcta!</font></p></h1><br>";
                         echo "<h3><p><font color='#01b438'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                        echo "<h3><p><font color='#01b438'>&quot;<u>Puntaje: " . $_SESSION['puntaje'] . "</u>&quot;</font></p></h3>";
                         echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
                         exit();
@@ -68,6 +72,7 @@
                     } else {
                         echo "<h1><p><font color='#e24949'>Ya no Tienes Vidas la Palabra era:</font></p></h1>";
                         echo "<h3><p><font color='#e24949'>&quot;<u>" . $_SESSION['palabra']['texto'] . "</u>&quot;</font></p></h3>";
+                        echo "<h3><p><font color='#e24949'>&quot;<u>Puntaje: " . $_SESSION['puntaje'] . "</u>&quot;</font></p></h3>";
                         echo "<button class='opciones1' onclick='iniciar();foco();'><p>Jugar de Nuevo</p></button>";
 
                         $_SESSION['juegoFinalizado'] = true;
@@ -87,6 +92,7 @@
         $_SESSION['palabra'] = buscarPalabra($dirDocumentos);
         $_SESSION['vidas'] = 6;
         $_SESSION['juegoFinalizado'] = false;
+        $_SESSION['puntaje'] = 0;
 
         for ($i=0; $i < strlen($_SESSION['palabra']['texto']); $i++) {
             if (substr($_SESSION['palabra']['texto'], $i, 1) === " ") {

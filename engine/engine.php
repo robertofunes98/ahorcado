@@ -13,10 +13,19 @@
 
     function highScore($dirDocumentos, $usuario) {
         $conexion = new conexDB($dirDocumentos);
-        $sql = "SELECT * FROM Jugador WHERE usuario = '" . $usuario . "'";
-        $puntaje = $conexion->consultaPersonalizada($sql);
+        $sql = "SELECT * FROM Puntuacion WHERE usuario = '" . $usuario . "'";
+        $sql2 = "SELECT MAX(puntaje) puntos FROM Puntuacion WHERE usuario = '" . $usuario . "'";
+        $consulta = $conexion->consultaPersonalizada($sql);
+        $conexion->cerrarConex();
 
-        return $puntaje['puntajeMaximo'];
+        if ($consulta === false) {
+            return "0";
+        } else {
+            $conexion2 = new conexDB($dirDocumentos);
+            $puntaje = $conexion2->consultaPersonalizada($sql2);
+            
+            return $puntaje['puntos'];
+        }
     }
 
     function calificar($modoJuego, $vidas, $dirDocumentos, $username, $tiempo = 0) {
