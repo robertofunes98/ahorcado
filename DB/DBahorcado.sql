@@ -37,13 +37,18 @@ primary key pkJugadorXpalabra(idJugadorXPalabra),
 foreign key fkJugadorXPalabraXJugador(usuario) references Jugador(usuario),
 foreign key fkJugadorXPalabraXPalabra(codigoPalabra) references Palabra(codigoPalabra)
 );
+<<<<<<< HEAD
 
 create table UsuariosBuscandoPartida(
 idBusqueda int auto_increment not null,
+<<<<<<< HEAD
 usuario varchar(30) not null,
 usuarioEmparejado boolean not null,
 contrincante varchar(30) null,
 primary key pkUsuariosBuscandoPartida(idBusqueda)
+=======
+Usuario varchar(30) not null
+>>>>>>> b2fcfa953b7236aed6aa27514e61c3ae622a088e
 );
 
 /*Pruebas*/
@@ -51,9 +56,9 @@ primary key pkUsuariosBuscandoPartida(idBusqueda)
 insert into Palabra (texto,reporte,pista) values ("hola mundo",0,"la vieja confiable en progra");
 
 
-insert into Jugador values ("ref98",1,aes_encrypt("holamundo","contra"),5000,true);
+insert into Jugador values ("ref98",1,aes_encrypt("prueba","hola"),5000,true);
 
-SELECT * FROM Jugador where AES_DECRYPT(contra, 'contra') = "holamundo" and usuario = "ref98";
+SELECT * FROM Jugador where AES_DECRYPT(contra, 'hola') = "prueba" and usuario = "ref98";
 
 
 insert into Puntuacion(puntaje,usuario) values (5000,"ref98");
@@ -76,10 +81,6 @@ update usuariosBuscandoPartida set usuarioEmparejado=1 where usuario="Usuario6";
 
 delete from UsuariosBuscandoPartida where Usuario="ref98";
 
-insert into UsuariosBuscandoPartida(usuario,usuarioEmparejado) values("Usuario6",false);
-
 select count(usuario) from UsuariosBuscandoPartida;
-
-select usuario from UsuariosBuscandoPartida where Usuario="ref98";
 
 select usuario as 'usuarios' from UsuariosBuscandoPartida;
