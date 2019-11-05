@@ -2,9 +2,6 @@
     include_once("engine/engine.php");
     @session_start();
 
-    if (comprobarSession() == false) {
-        header('location: login.php');
-    }
 ?>
 
 <!DOCTYPE html>
