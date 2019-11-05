@@ -2,9 +2,6 @@
     include_once('engine/conexDB.php');
     include_once('engine/engine.php');
 
-    if (comprobarSession() == true) {
-        header('location: index.php');
-    }
 
     if (isset($_POST['login'])) {
         $username = $_POST['txtUsername'];
