@@ -1,7 +1,7 @@
 <?php
     include_once("engine/engine.php");
     @session_start();
-
+    echo "esta es la integracion continua";
 ?>
 
 <!DOCTYPE html>
