@@ -13,4 +13,4 @@ steps:
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
   args: ['pull', 'https://github.com/robertofunes98/ahorcado']
 #  env: ['PROJECT_ROOT=ahorcado']
-  dir: '../ahorcado'
+  dir: '/home/robertofunes98/ahorcado'
