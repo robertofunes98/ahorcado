@@ -1,7 +1,7 @@
 <?php
     include_once("engine/engine.php");
     @session_start();
-    echo "Si esto funciona lloro";
+    echo "Si esto funciona lloro 2";
 ?>
 
 <!DOCTYPE html>
