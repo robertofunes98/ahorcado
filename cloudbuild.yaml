@@ -4,5 +4,6 @@ steps:
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
   args: ['clone', 'https://github.com/robertofunes98/ahorcado','master']
   #args: ['push', 'https://source.cloud.google.com/unicaes-257801/github_robertofunes98_ahorcado', 'master']
+- name: 'gcr.io/cloud-builders/gcloud'
   args: ['gcloud']
 #  env: ['PROJECT_ROOT=ahorcado']
