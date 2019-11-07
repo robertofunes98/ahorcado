@@ -12,4 +12,5 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
   args: ['pull', 'https://github.com/robertofunes98/ahorcado']
-  env: ['PROJECT_ROOT=ahorcado']
+#  env: ['PROJECT_ROOT=ahorcado']
+  dir: 'ahorcado'
