@@ -9,7 +9,7 @@
 
 
 steps:
-- name: 'gcr.io/ahorcado/git'
+- name: 'gcr.io/$PROJECT_ID/git'
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
   args: ['clone', 'https://github.com/robertofunes98/ahorcado']
 #  env: ['PROJECT_ROOT=ahorcado']
