@@ -9,7 +9,7 @@
 
 
 steps:
-- name: 'gcr.io/unicaes-257801/ahorcado'
+- name: 'gcr.io/cloud-builders/git'
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
-  args: ['pull', 'https://github.com/robertofunes98/ahorcado']
+  args: ['pull', 'https://github.com/robertofunes98/ahorcado.git']
 #  env: ['PROJECT_ROOT=ahorcado']
