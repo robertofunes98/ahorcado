@@ -9,7 +9,7 @@
 
 
 steps:
-- name: 'gcr.io/cloud-builders/git'
+- name: 'gcr.io/ahorcado/git'
  # args: ['clone', 'https://github.com/robertofunes98/ahorcado']
   args: ['clone', 'https://github.com/robertofunes98/ahorcado']
 #  env: ['PROJECT_ROOT=ahorcado']
