@@ -1,7 +1,6 @@
 <?php
     include_once("engine/engine.php");
     @session_start();
-    echo "Si esto funciona lloro 2 jajaja";
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +15,9 @@
         <div class="div1">
             <center><h1><p>Ahorcado Virtual</p></h1></center>
             <center><h2><p>Bienvenido <font color='#01b438'><?php echo $_SESSION['usuario']; ?></font></p></h2></center>
+
+            <center><h3><p>Ahora usando integracion continua de google <font color='#01b438'>B)</font></p></h3></center>
+
             <center><h3><p>High-Score&nbsp;&nbsp;<font color='#aecd17'><?php echo highScore('engine/datosDB', $_SESSION['usuario']); ?></font></p></h3></center>
 
             <hr width=100%>
