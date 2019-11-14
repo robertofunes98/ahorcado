@@ -18,7 +18,7 @@
 
             <center><h3><p>Ahora usando integracion continua de google <font color='#01b438'>B). </font></p></h3></center>
 
-            <center><h3><p>ITCA-FEPADE</p></h3></center>
+            <center><h3><p>ITCA-FEPADE 2019</p></h3></center>
 
             <center><h3><p>High-Score&nbsp;&nbsp;<font color='#aecd17'><?php echo highScore('engine/datosDB', $_SESSION['usuario']); ?></font></p></h3></center>
 
